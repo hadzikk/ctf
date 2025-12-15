@@ -1,12 +1,16 @@
 package routes
 
 import (
+	"ctf-backend/controllers"
+	"ctf-backend/database"
+	"ctf-backend/middleware"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/yourusername/ctf/backend/controllers"
 )
 
 func SetupUserRoutes(api fiber.Router) {
-	userController := controllers.NewUserController()
+	// Use global database instance
+	userController := controllers.NewUserController(database.DB)
 
 	userRoutes := api.Group("/users")
 	{
